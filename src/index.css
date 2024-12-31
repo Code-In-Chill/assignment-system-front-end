@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: linear-gradient(to left, #051937, #3e435d, #727386, #a9a8b2, #e0e0e0);
+}
+
+.Homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.polygon {
+  width: 1000px;
+  height: 800px;
+  clip-path: polygon(50% 0%, 97% 10%, 89% 47%, 94% 96%, 68% 100%, 36% 90%, 6% 78%, 4% 35%, 25% 28%);
+  background-image: linear-gradient(to bottom, #036479, #478192, #74a0ab, #9fbfc7, #cbdfe3);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.polygon h1 {
+  color: #ffffff;
+  text-align: center;
+}
+
+.polygon h3 {
+  color: #ffffff;
+  text-align: center;
+}
+
+.polygon button {
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #036479;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

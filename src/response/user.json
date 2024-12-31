@@ -1,0 +1,33 @@
+{
+  "id": "f:5092bbdc-5661-4c45-8519-0e3a7ddc70e3:67afe29b-bdd9-472f-8d31-e4b53db25fd5",
+  "username": "lehoangnam",
+  "firstName": "Le Hoang",
+  "lastName": "Nam",
+  "email": "hoangnam@assignment.com",
+  "emailVerified": true,
+  "attributes": {
+    "EMAIL_VERIFIED": [
+      "true"
+    ],
+    "phone": [
+      "0123456789"
+    ],
+    "ENABLED": [
+      "true"
+    ]
+  },
+  "origin": "5092bbdc-5661-4c45-8519-0e3a7ddc70e3",
+  "enabled": true,
+  "totp": false,
+  "federationLink": "5092bbdc-5661-4c45-8519-0e3a7ddc70e3",
+  "disableableCredentialTypes": [],
+  "requiredActions": [],
+  "notBefore": 0,
+  "access": {
+    "manageGroupMembership": true,
+    "view": true,
+    "mapRoles": true,
+    "impersonate": false,
+    "manage": true
+  }
+}
