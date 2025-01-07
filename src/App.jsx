@@ -1,39 +1,97 @@
-import AssignmentSystem from "./components/AssignmentSystem.jsx";
 import {Route, Routes} from "react-router-dom";
-import Callback from "./components/callback/Callback.jsx";
-import Homepage from "./components/homepage/Homepage.jsx";
+import Homepage from "./pages/Homepage.jsx";
 import PrivateRoute from "./components/private-route/PrivateRoute.jsx";
-import AdminDashboard from "./components/dashboard/AdminDashboard.jsx";
-import TeacherDashboard from "./components/dashboard/TeacherDashboard.jsx";
-import ProtectedDashboard from "./components/dashboard/ProtectedDashboard.jsx";
+import Header from "./components/header/Header.jsx";
+import RequiredLogin from "./pages/RequiredLogin.jsx";
+import AddVehicle from "./pages/vehicle/AddVehicle.jsx";
+import LandingPage from "./pages/LandingPage.jsx";
+import AddTransaction from "./pages/transaction/AddTransaction.jsx";
+import {useContext, useEffect, useState} from "react";
+import {AuthContext} from "./components/private-route/AuthManagement.jsx";
+import LoadingSpinner from "./components/common/LoadingSpinner.jsx";
+import EditVehicle from "./pages/vehicle/EditVehicle.jsx";
+import ViewTransaction from "./pages/transaction/ViewTransaction.jsx";
+import EditTransaction from "./pages/transaction/EditTransaction.jsx";
 
 function App() {
+    const [authenticated] = useContext(AuthContext);
+    const [authTimeout, setAuthTimeout] = useState(false);
+
+    useEffect(() => {
+        // Set a timeout for authentication loading
+        const timeoutId = setTimeout(() => {
+            if (authenticated === undefined) {
+                setAuthTimeout(true);
+            }
+        }, 10000); // 10 seconds timeout
+
+        return () => clearTimeout(timeoutId);
+    }, [authenticated]);
+
+    if (authenticated === undefined) {
+        if (authTimeout) {
+            return (
+                <div className="container mt-5">
+                    <div className="alert alert-warning" role="alert">
+                        <h4 className="alert-heading">Authentication Taking Longer Than Expected</h4>
+                        <p>We&#39;re having trouble connecting to the authentication service. You can:</p>
+                        <hr/>
+                        <p className="mb-0">
+                            - Check your internet connection<br/>
+                            - Refresh the page<br/>
+                            - Try again later
+                        </p>
+                    </div>
+                </div>
+            );
+        }
+        return <LoadingSpinner message="Authenticating..."/>;
+    }
 
     return (
-        <AssignmentSystem>
+        <div className="bg-secondary-subtle vh-100">
+            <Header/>
             <Routes>
-                <Route path={"admin-dashboard"} element={
+                <Route path={"add-vehicle"} element={
                     <PrivateRoute>
-                        <AdminDashboard/>
+                        <AddVehicle/>
                     </PrivateRoute>
                 }/>
 
-                <Route path={"teacher-dashboard"} element={
+                <Route path={"vehicles/:vehicleId/edit"} element={
                     <PrivateRoute>
-                        <TeacherDashboard/>
+                        <EditVehicle/>
                     </PrivateRoute>
                 }/>
 
-                <Route path={"protected-dashboard"} element={
+                <Route path={"add-transaction"} element={
                     <PrivateRoute>
-                        <ProtectedDashboard/>
+                        <AddTransaction/>
                     </PrivateRoute>
                 }/>
 
-                <Route path={"callback"} element={<Callback/>}/>
-                <Route path={"/"} element={<Homepage/>}/>
+                <Route path={"transactions/:transactionId"} element={
+                    <PrivateRoute>
+                        <ViewTransaction/>
+                    </PrivateRoute>
+                }/>
+
+                <Route path={"transactions/:transactionId/edit"} element={
+                    <PrivateRoute>
+                        <EditTransaction/>
+                    </PrivateRoute>
+                }/>
+
+                <Route path={"home"} element={
+                    <PrivateRoute>
+                        <Homepage/>
+                    </PrivateRoute>
+                }/>
+
+                <Route path={"/"} element={<LandingPage/>}/>
+                <Route path={"login-required"} element={<RequiredLogin/>}/>
             </Routes>
-        </AssignmentSystem>
+        </div>
     )
 }
 

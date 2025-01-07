@@ -2,25 +2,15 @@ import Keycloak from 'keycloak-js';
 
 const keycloak = new Keycloak({
     url: "http://localhost:8080/",
-    realm: "Assignment",
-    clientId: "assignment-system-react"
+    realm: "car-transaction-management",
+    clientId: "ctm-react",
+    silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
 });
 
-// Khởi tạo Keycloak với cấu hình `check-sso`
-keycloak
-    .init({
-        onLoad: "check-sso",
-        pkceMethod: 'S256',
-        redirectUri: window.location.origin
-    })
-    .then(authenticated => {
-        if (authenticated) {
-            console.log("Authenticated:", authenticated);
-        } else {
-            console.log("Not authenticated");
-        }
-    })
-    .catch(err => {
-        console.error("Keycloak initialization error:", err);
-    });
+// Kiểm tra xem có callback từ Keycloak trong URL không
+export const isKeycloakCallback = () => {
+    const params = new URLSearchParams(window.location.search);
+    return params.has("code") || params.has("state") || params.has("session_state");
+};
+
 export default keycloak;

@@ -1,0 +1,29 @@
+.border-dashed {
+    border: 4px dashed !important;
+}
+
+.border-dashed button {
+    border: none;
+    background: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.border-dashed button:hover {
+    transform: scale(1.05);
+}
+
+.hover:hover {
+    color: white !important;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.modal {
+    z-index: 1056 !important;
+}
+
+.modal-backdrop {
+    z-index: 1055 !important;
+}

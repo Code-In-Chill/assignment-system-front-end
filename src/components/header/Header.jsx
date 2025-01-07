@@ -1,4 +1,3 @@
-import "./Header.css";
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import {AuthContext} from "../private-route/AuthManagement.jsx";
@@ -21,41 +20,46 @@ const Header = () => {
     }
 
     return (
-        <header className={"Header"}>
-            <nav className="Nav">
-                <div>
-                    <Link className={"ProjectLink"} to={"/"}>Assignment System</Link>
-                    <ul className="List">
-                        <li><Link to={"/"}>Home</Link></li>
+        <header className="w-auto">
+            <nav className="d-flex align-items-center justify-content-between p-2 border-bottom shadow">
+                <div className="d-flex align-items-center g-2">
+                    <Link className={"ProjectLink text-black text-decoration-none fw-bolder fs-2 pe-4"} to={"/"}>CarExpense
+                        Tracking</Link>
+                    <ul className="d-flex g-2 list-unstyled m-0 p-0">
+                        <li>
+                            <Link className={"nav-btn text-black text-decoration-none fw-bold fs-4 me-3"}
+                                  to={"home"}>Home</Link>
+                        </li>
 
                         {
                             authenticated &&
-                            <li><Link to={"protected-dashboard"}>Protected Dashboard</Link></li>
+                            <li>
+                                <Link className={"nav-btn text-black text-decoration-none fw-bold fs-4 me-3"}
+                                      to={"add-vehicle"}>Add Vehicle</Link>
+                            </li>
                         }
-
                         {
-                            (hasAnyRoles(["teacher", "admin"], roles)) &&
-                            <li><Link to={"teacher-dashboard"}>Teacher Dashboard</Link></li>
-                        }
-
-                        {
-                            (hasRole("admin", roles)) &&
-                            <li><Link to={"admin-dashboard"}>Admin Dashboard</Link></li>
+                            authenticated &&
+                            <li>
+                                <Link className={"nav-btn text-black text-decoration-none fw-bold fs-4 me-3"}
+                                      to={"add-transaction"}>Add Transaction</Link>
+                            </li>
                         }
                     </ul>
                 </div>
-                <div>
+                <div className="d-flex align-items-center g-2">
                     {
                         authenticated && user &&
-                        <button className={"BtnLogout"} onClick={handleViewAccountProfile}>Profile: {user.username}</button>
+                        <button className={"btn btn-lg btn-info text-white fw-bold me-3"}
+                                onClick={handleViewAccountProfile}>Profile: {user.username}</button>
                     }
                     {
                         authenticated &&
-                        <button className={"BtnLogout"} onClick={handleLogout}>Logout</button>
+                        <button className={"btn btn-lg btn-danger fw-bold"} onClick={handleLogout}>Logout</button>
                     }
                     {
                         !authenticated &&
-                        <button className={"BtnLogin"} onClick={handleLogin}>Login From
+                        <button className={"btn btn-lg btn-primary fw-bold"} onClick={handleLogin}>Login From
                             Keycloak</button>
                     }
                 </div>

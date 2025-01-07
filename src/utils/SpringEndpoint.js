@@ -1,13 +1,20 @@
 export default class SpringEndpoint {
+    static host = "http://localhost:10000";
+    static api_prefix = "/api/v1";
+}
 
-    static host = "http://localhost:9789";
-    static api_prefix = "/api/keycloak-demo";
+export const vehicle_endpoint = {
+    get_all: SpringEndpoint.host + SpringEndpoint.api_prefix + "/vehicles",
+    get_by_id: SpringEndpoint.host + SpringEndpoint.api_prefix + "/vehicles/:id",
+    create: SpringEndpoint.host + SpringEndpoint.api_prefix + "/vehicles/create",
+    update: SpringEndpoint.host + SpringEndpoint.api_prefix + "/vehicles/update",
+    delete: SpringEndpoint.host + SpringEndpoint.api_prefix + "/vehicles/delete",
+}
 
-    static adminEndpoint = this.host + this.api_prefix + "/admin-only";
-
-    static teacherEndpoint = this.host + this.api_prefix + "/teacher-and-admin";
-
-    static protectedEndpoint = this.host + this.api_prefix + "/has-any-role";
-
-    static publicEndpoint = this.host + this.api_prefix + "/public-endpoint";
+export const transaction_endpoint = {
+    get_all: SpringEndpoint.host + SpringEndpoint.api_prefix + "/transactions",
+    get_by_id: SpringEndpoint.host + SpringEndpoint.api_prefix + "/transactions/:id",
+    create: SpringEndpoint.host + SpringEndpoint.api_prefix + "/transactions/create",
+    update: SpringEndpoint.host + SpringEndpoint.api_prefix + "/transactions/update",
+    delete: SpringEndpoint.host + SpringEndpoint.api_prefix + "/transactions/delete",
 }
