@@ -30,21 +30,6 @@ const Header = () => {
                             <Link className={"nav-btn text-black text-decoration-none fw-bold fs-4 me-3"}
                                   to={"home"}>Home</Link>
                         </li>
-
-                        {
-                            authenticated &&
-                            <li>
-                                <Link className={"nav-btn text-black text-decoration-none fw-bold fs-4 me-3"}
-                                      to={"add-vehicle"}>Add Vehicle</Link>
-                            </li>
-                        }
-                        {
-                            authenticated &&
-                            <li>
-                                <Link className={"nav-btn text-black text-decoration-none fw-bold fs-4 me-3"}
-                                      to={"add-transaction"}>Add Transaction</Link>
-                            </li>
-                        }
                     </ul>
                 </div>
                 <div className="d-flex align-items-center g-2">
