@@ -18,3 +18,9 @@ export const transaction_endpoint = {
     update: SpringEndpoint.host + SpringEndpoint.api_prefix + "/transactions/update",
     delete: SpringEndpoint.host + SpringEndpoint.api_prefix + "/transactions/delete",
 }
+
+export const report_endpoint = {
+    export_transaction_pdf: SpringEndpoint.host + SpringEndpoint.api_prefix + "/reports/export/transaction/pdf",
+    export_transaction_excel_preview: SpringEndpoint.host + SpringEndpoint.api_prefix + "/reports/export/transaction/excel/preview",
+    export_transaction_excel: SpringEndpoint.host + SpringEndpoint.api_prefix + "/reports/export/transaction/excel",
+}

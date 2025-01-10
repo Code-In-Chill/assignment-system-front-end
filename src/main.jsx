@@ -29,5 +29,21 @@ keycloak
         )
     })
     .catch(err => {
+        createRoot(document.getElementById('root')).render(
+            <div className="container mt-5">
+                <div className="alert alert-warning" role="alert">
+                    <h4 className="alert-heading">
+                        Có Vấn Đề Xảy Ra Trong Quá Trình Xác Thực
+                    </h4>
+                    <p>Chúng tôi đang gặp vấn đề khi kết nối đến dịch vụ xác thực. Bạn có thể:</p>
+                    <hr/>
+                    <p className="mb-0">
+                        - Kiểm tra lại kết nối internet<br/>
+                        - Tải lại trang<br/>
+                        - Thử truy cập lại sau ít phút
+                    </p>
+                </div>
+            </div>
+        )
         console.error("Keycloak initialization error:", err);
     });

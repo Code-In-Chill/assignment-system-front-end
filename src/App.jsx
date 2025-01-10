@@ -12,6 +12,7 @@ import LoadingSpinner from "./components/common/LoadingSpinner.jsx";
 import EditVehicle from "./pages/vehicle/EditVehicle.jsx";
 import ViewTransaction from "./pages/transaction/ViewTransaction.jsx";
 import EditTransaction from "./pages/transaction/EditTransaction.jsx";
+import PreviewReport from "./pages/report/PreviewReport.jsx";
 
 function App() {
     const [authenticated] = useContext(AuthContext);
@@ -79,6 +80,12 @@ function App() {
                 <Route path={"transactions/:transactionId/edit"} element={
                     <PrivateRoute>
                         <EditTransaction/>
+                    </PrivateRoute>
+                }/>
+
+                <Route path={"export-report"} element={
+                    <PrivateRoute>
+                        <PreviewReport/>
                     </PrivateRoute>
                 }/>
 

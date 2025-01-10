@@ -5,7 +5,8 @@ const TransactionsSection = ({
                                  vehicles,
                                  transactions,
                                  selectedVehicleId,
-                                 onAddTransaction
+                                 onAddTransaction,
+                                 onExportReport
                              }) => {
 
     if (vehicles.length === 0 || transactions.length === 0) {
@@ -31,6 +32,12 @@ const TransactionsSection = ({
                 <p className="fw-bold h5 mb-0 w-auto">Chi Tiêu Gần Đây</p>
                 <div className="w-auto">
                     <button
+                        onClick={onExportReport}
+                        className="btn btn-success me-2"
+                    >
+                        Xuất Báo Cáo
+                    </button>
+                    <button
                         onClick={onAddTransaction}
                         className="btn btn-primary"
                     >
@@ -50,7 +57,8 @@ TransactionsSection.propTypes = {
     vehicles: PropTypes.array.isRequired,
     transactions: PropTypes.array.isRequired,
     selectedVehicleId: PropTypes.string,
-    onAddTransaction: PropTypes.func.isRequired
+    onAddTransaction: PropTypes.func.isRequired,
+    onExportReport: PropTypes.func.isRequired,
 };
 
 export default TransactionsSection;

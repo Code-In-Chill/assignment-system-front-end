@@ -47,6 +47,36 @@ function ajax(url, requestMethod, token, requestBody) {
     })
 }
 
+export function ajaxBinary(url, requestMethod, token) {
+    const fetchData = {
+        headers: {
+            "Accept": "*/*"
+        },
+        method: requestMethod,
+    }
+
+    if (token) {
+        fetchData.headers.Authorization = `Bearer ${token}`
+    }
+
+    return fetch(url, fetchData).then(async (response) => {
+        const statusCode = response.status
+
+        if (statusCode === 200) {
+            return response.blob();
+        } else if (statusCode === 401) {
+            throw new Error("Phiên đăng nhập đã hết hạn.");
+        } else if (statusCode === 403) {
+            throw new Error("Bạn không có quyền thực hiện thao tác này.");
+        } else if (statusCode === 404) {
+            throw new Error("Không tìm thấy tài nguyên yêu cầu.");
+        } else {
+            const errorText = await response.text();
+            throw new Error(errorText || "Đã có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+    })
+}
+
 export function ajaxUrlEncoded(url, requestMethod, token, requestBody) {
 
     const fetchData = {

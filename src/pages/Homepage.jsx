@@ -1,11 +1,6 @@
-import {useState, useEffect, useContext} from "react";
-import {Link, useNavigate, useSearchParams} from "react-router-dom";
-import StatsCard from "../components/card/StatsCard.jsx";
-import VehicleCard from "../components/card/VehicleCard.jsx";
-import {vehicleService} from "../services/vehicleService";
-import {transactionService} from "../services/transactionService";
+import {useState, useContext} from "react";
+import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../components/private-route/AuthManagement.jsx";
-import CreateVehicleCard from "../components/card/CreateVehicleCard.jsx";
 import Toast from "../components/toast/Toast.jsx";
 import WelcomeCard from "../components/card/WelcomeCard.jsx";
 import useStats from "../hooks/useStats.js";
@@ -63,7 +58,7 @@ const Homepage = () => {
             showToast('Xóa xe thành công');
             handleCloseModal();
         } catch (error) {
-            showToast('Xóa xe thất bại', 'error');
+            showToast('Xóa xe thất bại:' + error, 'error');
         }
     };
 
@@ -108,6 +103,7 @@ const Homepage = () => {
                     transactions={transactions}
                     selectedVehicleId={selectedVehicleId}
                     onAddTransaction={() => navigate("/add-transaction")}
+                    onExportReport={() => navigate("/export-report")}
                 />
             )}
 

@@ -6,11 +6,11 @@ const LandingPage = () => {
     const [, user, keycloak] = useContext(AuthContext);
 
     return (
-        <div className={"container mt-3"}>
-            <div className="polygon">
+        <div className={"container h-75 d-flex align-items-center justify-content-center mt-5"}>
+            <div className="polygon h-100 d-flex flex-column justify-content-center align-items-center">
 
                 {!user &&
-                    <h1>Welcome to Assignment System</h1>
+                    <h1>Welcome to CarExpense Tracking</h1>
                 }
                 {user &&
                     <h1>Welcome back, <u>{user.firstName + " " + user.lastName}</u></h1>
